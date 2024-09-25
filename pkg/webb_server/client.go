@@ -68,6 +68,20 @@ func NewGRPCClient(endpoint string, sslEnabled bool, maxMessageLength int, optio
 	channelMutex.Lock()
 	defer channelMutex.Unlock()
 
+	if options == nil {
+		options = make(map[string]interface{})
+	}
+
+	metadata, ok := options["metadata"].(map[string]string)
+	if !ok {
+		metadata = make(map[string]string)
+	}
+
+	interceptor := &ClientInterceptor{
+		metadata:   metadata,
+		channelKey: endpoint,
+	}
+
 	if client, exists := grpcChannels[endpoint]; exists {
 		return client, nil
 	}
