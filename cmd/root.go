@@ -29,8 +29,8 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "james",
-	Short: "james core",
+	Use:   "webb-server",
+	Short: "webb-server core",
 	Long: `
 Commands:
   create-project  Create a new project
