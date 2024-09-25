@@ -104,10 +104,6 @@ func NewGRPCClient(endpoint string, sslEnabled bool, maxMessageLength int, optio
 		opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	}
 
-	interceptor := &ClientInterceptor{
-		metadata:   options["metadata"].(map[string]string),
-		channelKey: endpoint,
-	}
 	opts = append(opts, grpc.WithUnaryInterceptor(interceptor.UnaryInterceptor))
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*3)
