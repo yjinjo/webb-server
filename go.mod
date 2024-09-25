@@ -1,4 +1,4 @@
-module github.com/yjinjo/james
+module github.com/yjinjo/webb-server
 
 go 1.23.0
 
