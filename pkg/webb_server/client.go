@@ -38,6 +38,10 @@ type ClientInterceptor struct {
 	channelKey string
 }
 
+func (c *GRPCClient) GetChannelKey() string {
+	return c.channelKey
+}
+
 func (ci *ClientInterceptor) UnaryInterceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 	md := metadata.New(ci.metadata)
 	newCtx := metadata.NewOutgoingContext(ctx, md)
